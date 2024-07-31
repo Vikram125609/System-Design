@@ -1,3 +1,5 @@
+const ws = new WebSocket('ws://localhost:3000');
+
 window.onload = function () {
     const name = prompt('Enter your name', 'Shyaam Sundar');
     localStorage.setItem('name', name);
@@ -5,7 +7,14 @@ window.onload = function () {
 
 function handleDropdown(event) {
     const { name, value } = event.target;
-    console.log(name, value)
+    if (localStorage.getItem('room')) {
+        ws.send(JSON.stringify({ room: localStorage.getItem('room'), type: 'leave' }));
+        ws.send(JSON.stringify({ room: value, type: 'join' }));
+    }
+    else {
+        ws.send(JSON.stringify({ room: value, type: 'join' }));
+    }
+    localStorage.setItem('room', value);
 }
 
 function handleInput(event) {
@@ -18,7 +27,7 @@ window.onkeyup = function (event) {
     if (event.keyCode === 13) {
         const inputTag = document.getElementById('input');
         const message = inputTag.value;
-        ws.send(message);
+        ws.send(JSON.stringify({ room: localStorage.getItem('room'), message: message, type: 'message', user: localStorage.getItem('name') }));
         const divTag = document.createElement('div');
         divTag.className = 'flex flex-end  w-100 font-size-1-5-rem';
         const pTag = document.createElement('p');
@@ -30,15 +39,29 @@ window.onkeyup = function (event) {
     }
 }
 
-const ws = new WebSocket('ws://localhost:3000');
-
 ws.onopen = () => {
     console.log('Connection established!');
 };
 
 ws.onmessage = (event) => {
-    const divTag = document.createElement('div');
-    divTag.className = 'flex flex-start';
-    divTag.innerHTML = `<p>${event.data}</p>`;
-    document.querySelector('.chat-container').appendChild(divTag);
+    const result = JSON.parse(event.data.toString('utf-8'));
+    console.log(result);
+    if (result.type === 'message') {
+        const divTag = document.createElement('div');
+        divTag.className = 'flex flex-col  w-100 font-size-1-5-rem';
+        const pTag = document.createElement('p');
+        const nameTag = document.createElement('p');
+        nameTag.style.padding = '5px 5px 0px 5px';
+        nameTag.className = 'color-blueviolet font-size-1-rem';
+        nameTag.textContent = result.user || 'Guest';
+        pTag.style.padding = '0px 5px 5px 5px';
+        pTag.textContent = result.message;
+        divTag.appendChild(nameTag);
+        divTag.appendChild(pTag);
+        document.querySelector('.chat-container').appendChild(divTag);
+    }
+    if (result.type === 'no_of_users') {
+        document.querySelector('.color-red').textContent = result.totalUsersInChannel;
+        document.querySelector('.color-blueviolet').textContent = result.totalUsersInApp;
+    }
 }
