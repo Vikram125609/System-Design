@@ -1,0 +1,39 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.heading {
+  text-align: center;
+  margin: 1rem;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 80%;
+  margin: auto;
+  overflow: auto;
+  border: 1px solid black;
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+}
+
+.chat-input-container {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 85vh;
+}
+.input-container {
+  width: 80%;
+  margin: auto;
+}
+
+.input-container input {
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  width: calc(100% - 22px);
+}
