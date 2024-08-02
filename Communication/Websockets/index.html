@@ -115,12 +115,74 @@
       font-size: 1.5rem;
       width: calc(100% - 22px);
     }
+
+    @media screen and (max-height: 600px) {
+      .chat-container {
+        height: 300px;
+      }
+    }
+
+    @media screen and (min-width: 300px) and (max-width: 500px) {
+      .heading {
+        font-size: 1rem;
+      }
+      .select-channel-container {
+        flex-direction: column;
+      }
+      .dropdown-container {
+        width: 100%;
+      }
+      #dropdown {
+        width: 100%;
+        font-size: 1rem;
+      }
+      .total_users {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 600px) {
+      .heading {
+        font-size: 1.5rem;
+      }
+      .chat-container {
+        width: 90%;
+      }
+      .chat-input-container {
+        width: 90%;
+      }
+      .select-channel-container {
+        width: 80%;
+      }
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 900px) {
+      .heading {
+        font-size: 1.5rem;
+      }
+      .chat-container {
+        width: 90%;
+      }
+      .chat-input-container {
+        width: 90%;
+      }
+      .select-channel-container {
+        width: 82.5%;
+      }
+    }
   </style>
   <body>
     <div id="root">
-      <h1 class="heading">Scaling Web Sockets To Millions</h1>
-      <div class="flex align-center justify-between w-60 margin-auto">
-        <div>
+      <h1 class="heading">Checking How Much Users Can Connect</h1>
+      <div
+        class="flex align-center justify-between w-60 margin-auto select-channel-container"
+      >
+        <div class="dropdown-container">
           <select name="channel" id="dropdown" onchange="handleDropdown(event)">
             <option value="">Select Channel</option>
             <option value="takeuforward">Take U Forward</option>
@@ -129,14 +191,14 @@
           </select>
         </div>
 
-        <div class="">
+        <div class="total_users">
           <div class="flex justify-between">
             <span>Channel Users : </span>
-            <span class="color-red">0</span>
+            <span class="color-red">&nbsp;0 </span>
           </div>
           <div class="flex justify-between">
             <span>App Users : </span>
-            <span class="color-blueviolet">0</span>
+            <span class="color-blueviolet">&nbsp;0</span>
           </div>
         </div>
       </div>
