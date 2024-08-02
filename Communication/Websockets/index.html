@@ -126,6 +126,19 @@
       .heading {
         font-size: 1rem;
       }
+      .chat-container {
+        width: 90%;
+        height: 300px;
+      }
+      .chat-input-container {
+        width: 90%;
+      }
+      .select-channel-container {
+        width: 80%;
+      }
+      .input-container {
+        width: 90%;
+      }
       .select-channel-container {
         flex-direction: column;
       }
@@ -136,9 +149,12 @@
         width: 100%;
         font-size: 1rem;
       }
+      .input-container input {
+        font-size: 1rem;
+      }
       .total_users {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         width: 100%;
         font-size: 1rem;
@@ -193,11 +209,11 @@
 
         <div class="total_users">
           <div class="flex justify-between">
-            <span>Channel Users : </span>
+            <span>Channel Users => </span>
             <span class="color-red">&nbsp;0 </span>
           </div>
           <div class="flex justify-between">
-            <span>App Users : </span>
+            <span>App Users => </span>
             <span class="color-blueviolet">&nbsp;0</span>
           </div>
         </div>
