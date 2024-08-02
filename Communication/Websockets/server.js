@@ -74,6 +74,6 @@ setInterval(() => {
     });
 }, 5000);
 
-server.listen(3000, () => {
-    console.log('Server running at 3000');
+server.listen(80, () => {
+    console.log('Server running at 80');
 });
