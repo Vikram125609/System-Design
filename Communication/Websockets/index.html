@@ -92,6 +92,7 @@
       height: 500px;
       width: 80%;
       margin: auto;
+      padding: 0px 10px;
       overflow: auto;
       border: 1px solid black;
       background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
@@ -292,6 +293,7 @@
           pTag.textContent = message;
           divTag.appendChild(pTag);
           document.querySelector(".chat-container").appendChild(divTag);
+          document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
           inputTag.value = "";
         }
       };
@@ -322,6 +324,7 @@
           divTag.appendChild(nameTag);
           divTag.appendChild(pTag);
           document.querySelector(".chat-container").appendChild(divTag);
+          document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
         }
         if (result.type === "no_of_users") {
           document.querySelector(".color-red").textContent =
