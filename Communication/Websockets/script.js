@@ -15,6 +15,7 @@ function handleDropdown(event) {
         ws.send(JSON.stringify({ room: value, type: 'join' }));
     }
     localStorage.setItem('room', value);
+    document.querySelector('.chat-container').innerHTML = '';
 }
 
 function handleInput(event) {
@@ -43,6 +44,10 @@ ws.onopen = () => {
     console.log('Connection established!');
 };
 
+ws.onerror = () => {
+    ws.send(JSON.stringify({ room: localStorage.getItem('room'), type: 'leave' }));
+};
+
 ws.onmessage = (event) => {
     const result = JSON.parse(event.data.toString('utf-8'));
     console.log(result);
@@ -64,4 +69,8 @@ ws.onmessage = (event) => {
         document.querySelector('.color-red').textContent = result.totalUsersInChannel;
         document.querySelector('.color-blueviolet').textContent = result.totalUsersInApp;
     }
+}
+
+window.onbeforeunload = () => {
+    ws.send(JSON.stringify({ room: localStorage.getItem('room'), type: 'leave' }));
 }

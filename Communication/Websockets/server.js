@@ -10,6 +10,10 @@ const middleware = (req, res, next) => {
     next();
 };
 
+app.use(express.json());
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+})
 app.get('/without-middleware', (req, res) => {
     res.json({ message: "This is the not using middleware" });
 });
@@ -50,6 +54,9 @@ wss.on('connection', (socket, request) => {
                 }
             }
         }
+    });
+    socket.on('close', () => { 
+        console.log('client disconnected');
     });
 });
 
