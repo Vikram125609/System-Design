@@ -35,7 +35,7 @@
 }
 
 .flex-end {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .color-red {
@@ -55,11 +55,11 @@
 }
 
 .w-100 {
-    width: 100%;
+  width: 100%;
 }
 
-.font-size-1-5-rem { 
-    font-size: 1.5rem;
+.font-size-1-5-rem {
+  font-size: 1.5rem;
 }
 
 .font-size-1-rem {
