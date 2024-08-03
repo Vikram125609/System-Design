@@ -1,10 +1,5 @@
 const ws = new WebSocket("ws://localhost:80");
 
-window.onload = function () {
-    const name = prompt("Enter your name", "Shyaam Sundar");
-    localStorage.setItem("name", name);
-};
-
 function handleDropdown(event) {
     const { name, value } = event.target;
     if (localStorage.getItem("room")) {
@@ -86,6 +81,11 @@ ws.onmessage = (event) => {
         document.querySelector(".color-blueviolet").textContent =
             result.totalUsersInApp;
     }
+};
+
+window.onload = function () {
+    const name = prompt("Enter your name", "Shyaam Sundar");
+    localStorage.setItem("name", name);
 };
 
 window.onbeforeunload = () => {
