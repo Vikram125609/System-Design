@@ -54,11 +54,10 @@ wss.on('connection', async (socket, request) => {
     socket.on('message', async (message) => {
         message = JSON.parse(message.toString('utf-8'));
         if (message.type === 'message') {
-            redisPublisher.publish('takeuforward', JSON.stringify({ ...message, id: socket.id }));
+            redisPublisher.publish(message.room, JSON.stringify({ ...message, id: socket.id }));
         }
         if (message.type === 'join') {
             const room = message.room;
-            console.log('you joined the room', room);
             if (!rooms[room]) {
                 rooms[room] = [];
                 rooms_to_userId[room] = [];
@@ -67,21 +66,24 @@ wss.on('connection', async (socket, request) => {
                 });
             }
             if (!rooms[room].includes(socket)) {
-                let check = false;
                 rooms[room].push(socket);
                 rooms_to_userId[room].push(socket.id);
                 redisClient.set(room, Number(await redisClient.get(room)) + 1);
-                redisClient.set('total_users', Number(await redisClient.get('total_users')) + 1);
             }
         }
         if (message.type === 'leave') {
+            let check = false;
             const room = message.room;
-            console.log('you leaved the room', room);
             if (rooms[room]) {
                 rooms[room] = rooms[room].filter((client) => client !== socket);
                 rooms_to_userId[room] = rooms_to_userId[room].filter((id) => id !== socket.id);
                 redisClient.set(room, Number(await redisClient.get(room)) - 1);
-                redisClient.set('total_users', Number(await redisClient.get('total_users')) - 1);
+                Object.entries(rooms_to_userId).forEach(([room, ids]) => {
+                    if (ids.includes(socket.id)) {
+                        check = true;
+                    }
+                })
+                if (!check) redisClient.set('total_users', Number(await redisClient.get('total_users')) - 1);
                 if (rooms[room].length === 0) {
                     delete rooms[room];
                     redisSubscriber.unsubscribe(room);
@@ -99,6 +101,7 @@ wss.on('connection', async (socket, request) => {
         })
         redisClient.set('total_users', Number(await redisClient.get('total_users')) - 1);
     });
+    redisClient.set('total_users', Number(await redisClient.get('total_users')) + 1);
 });
 
 setInterval(() => {
