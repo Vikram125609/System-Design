@@ -1,4 +1,5 @@
 const http = require('http');
+const process = require('process');
 const express = require('express');
 const { WebSocket } = require('ws');
 const { createClient } = require('redis');
@@ -114,6 +115,11 @@ setInterval(() => {
     });
 }, 5000);
 
-server.listen(80, () => {
-    console.log('Server running at 80');
-});
+
+setInterval(() => {
+    if (process.getuid) {
+        console.log(rooms, '\n');
+    }
+}, 1000 * 60);
+
+module.exports = server
