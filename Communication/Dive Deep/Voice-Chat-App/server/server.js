@@ -49,6 +49,7 @@ wss.on('connection', (socket) => {
         const message = data.toString('utf-8');
         wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN && client.id !== socket.id) {
+
                 client.send(message);
             }
         });
