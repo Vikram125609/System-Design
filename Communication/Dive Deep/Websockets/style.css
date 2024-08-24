@@ -1,0 +1,114 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.heading {
+  text-align: center;
+  margin: 1rem;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  width: 80%;
+  margin: auto;
+  padding: 0px 10px;
+  overflow: auto;
+  border: 1px solid black;
+  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+}
+
+.chat-input-container {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 85vh;
+}
+.input-container {
+  width: 80%;
+  margin: auto;
+}
+
+.input-container input {
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  width: calc(100% - 22px);
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .heading {
+    font-size: 1rem;
+  }
+  .chat-container {
+    width: 90%;
+    height: 50vh;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .select-channel-container {
+    width: 80%;
+  }
+  .input-container {
+    width: 90%;
+  }
+  .select-channel-container {
+    flex-direction: column;
+  }
+  .dropdown-container {
+    width: 100%;
+  }
+  #dropdown {
+    width: 100%;
+    font-size: 1rem;
+  }
+  .input-container input {
+    font-size: 1rem;
+  }
+  .total_users {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+  .chat-container {
+    width: 90%;
+    height: 60vh;
+    margin: 1rem auto;
+  }
+  .chat-input-container {
+    width: 90%;
+  }
+  .select-channel-container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+  .chat-container {
+    width: 90%;
+    height: 50vh;
+  }
+  .chat-input-container {
+    width: 90%;
+  }
+  .select-channel-container {
+    width: 82.5%;
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Websocket</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1 class="heading">Checking How Much Users Can Connect</h1>
+      <div
+        class="flex align-center justify-between w-60 margin-auto select-channel-container"
+      >
+        <div class="dropdown-container">
+          <select name="channel" id="dropdown" onchange="handleDropdown(event)">
+            <option value="">Select Channel</option>
+            <option value="takeuforward">Take U Forward</option>
+            <option value="lovebabbar">Love Babbar</option>
+            <option value="arshgoyal">Arsh Goyal</option>
+          </select>
+        </div>
+
+        <div class="total_users">
+          <div class="flex justify-between">
+            <span>Channel Users => </span>
+            <span class="color-red">&nbsp;0 </span>
+          </div>
+          <div class="flex justify-between">
+            <span>App Users => </span>
+            <span class="color-blueviolet">&nbsp;0</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-container">
+        <div class="chat-container"></div>
+        <div class="input-container">
+          <input
+            type="text"
+            id="input"
+            onchange="handleInput(event)"
+            placeholder="Enter your message"
+          />
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
